@@ -1,0 +1,32 @@
+#ifndef MATH_VEC_H_
+#define MATH_VEC_H_
+class Vec {
+  /*
+   * A simple homemade class for mathematical vectors. Supports both Cartesian
+   * and polar coordinates, and the inner product.
+   */
+  public:
+    double get_x() const;
+    double get_y() const;
+    void set_x(const double new_val);
+    void set_y(const double new_val);
+    double get_r() const;             // the length of the vector
+    double get_t() const;             // the rotation of vector, -pi < t <= pi
+    void set_r(const double new_val); // change length, preserve rotation
+    void set_t(const double new_val); // change rotation, preserve length
+    Vec(const double x, const double y);
+    // Operator overloads:
+    friend Vec& operator+=(Vec& lhs, const Vec& rhs);
+    friend Vec& operator-=(Vec& lhs, const Vec& rhs);
+    friend const Vec operator+(const Vec& arg);
+    friend const Vec operator-(const Vec& arg);
+    friend const Vec operator+(Vec lhs, const Vec& rhs);
+    friend const Vec operator-(Vec lhs, const Vec& rhs);
+    friend const double operator*(const Vec& lhs, const Vec& rhs); // inner product
+    friend const int operator==(const Vec& lhs, const Vec& rhs);
+    friend const int operator!=(const Vec& lhs, const Vec& rhs);
+  private:
+    double x;
+    double y;
+};
+#endif

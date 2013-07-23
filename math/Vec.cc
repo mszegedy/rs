@@ -1,4 +1,5 @@
 #include <cmath>
+#include <string>
 #include "../consts.h"
 #include "Vec.h"
 
@@ -37,21 +38,22 @@ double Vec::get_t() const {
     return atan(y/x)+::kPi;
   else if(x < 0. && y < 0.)
     return atan(y/x)-::kPi;
-  else
-    return atan(y/x);
+  return atan(y/x);
 }
 Vec::Vec(const double x_arg, const double y_arg) {
   x = x_arg;
   y = y_arg;
-}
-// Operator overloads: {{{
+} // }}}
+// Operator overloads {{{
 Vec& operator+=(Vec& lhs, const Vec& rhs) {
   lhs.set_x(lhs.get_x()+rhs.get_x());
   lhs.set_y(lhs.get_y()+rhs.get_y());
+  return lhs;
 }
 Vec& operator-=(Vec& lhs, const Vec& rhs) {
   lhs.set_x(lhs.get_x()-rhs.get_x());
   lhs.set_y(lhs.get_y()-rhs.get_y());
+  return lhs;
 }
 const Vec operator+(const Vec& arg) {
   return Vec(arg.get_x(),arg.get_y());

@@ -10,7 +10,9 @@ SDL_Surface* LoadImage(const std::string filename) {
     ret_image = SDL_DisplayFormat(ret_image);
   return ret_image;
 }
-void ApplySurface(const Vec& offset_vec, SDL_Surface* source, SDL_Surface* destination) {
+void ApplySurface(const Vec& offset_vec,
+                  SDL_Surface* source,
+                  SDL_Surface* destination) {
   /*
    * Blits source onto destination at offset_vec. offset_ver USES SDL
    * COORDINATES, NOT CARTESIAN COORDINATES!

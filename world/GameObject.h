@@ -7,8 +7,9 @@ class GameObject {
    * This class is similar to SDL_Rect in a lot of ways: it has a position, a
    * set of dimensions, and an image. However, the first two values are stored
    * as Vecs, and the third is a method that might return different values
-   * based on when you call it. It also has a t value, for time, generally used
-   * to tell what image to return.
+   * based on when you call it. It also has a time value, generally used to
+   * tell what image to return, but also for child classes to tell how to
+   * interact.
    * THIS CLASS IS NOT MEANT TO BE INSTANTIATED. Only its children. While this
    * and Scenery are functionally exactly the same, the semantic difference
    * counts.
@@ -27,8 +28,8 @@ class GameObject {
     void add_to_time(const double increment); // Set time
     Vec get_upper_right_corner() const; // Position Vec + dimension Vec
   private:
-    Vec pos;
-    Vec dim;
-    double time;
+    Vec pos;     // Bottom left corner
+    Vec dim;     // Vec(width,height)
+    double time; // Time of object since creation; classically 1 tick/frame
 };
 #endif

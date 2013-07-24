@@ -5,21 +5,39 @@
 
 // Member functions {{{
 double Vec::get_x() const {
+  /*
+   * Inspect this vector's x.
+   */
   return x;
 }
 double Vec::get_y() const {
+  /*
+   * Inspect this vector's y.
+   */
   return y;
 }
 void Vec::set_x(const double new_val) {
+  /*
+   * Mutate this vector's x to new_val.
+   */
   x = new_val;
 }
 void Vec::set_y(const double new_val) {
+  /*
+   * Mutate this vector's y to new_val.
+   */
   y = new_val;
 }
 double Vec::get_r() const {
+  /*
+   * Inspect this vector's r (length).
+   */
   return sqrt(x*x+y*y);
 }
 double Vec::get_t() const {
+  /*
+   * Inspect this vector's theta (rotation), -pi < theta <= pi
+   */
   if(x == 0.) {
     if(y > 0.)
       return ::kPi/2.;
@@ -40,7 +58,27 @@ double Vec::get_t() const {
     return atan(y/x)-::kPi;
   return atan(y/x);
 }
+void Vec::set_r(const double new_val) {
+  /*
+   * Mutate this vector's r (length) to new_val without changing its rotation.
+   */
+  const double t = this->get_t();
+  x = ::kInvSqrtTwo*new_val*cos(t);
+  y = ::kInvSqrtTwo*new_val*sin(t);
+}
+void Vec::set_t(const double new_val) {
+  /*
+   * Mutate this vector's theta (rotation) to new_val without changing its
+   * length. The range of new_val is unrestricted, but it should be in radians.
+   */
+  const double r = this->get_r();
+  x = ::kInvSqrtTwo*r*cos(new_val);
+  y = ::kInvSqrtTwo*r*sin(new_val);
+}
 Vec::Vec(const double x_arg, const double y_arg) {
+  /*
+   * Construct this vector with x being x_arg and y being y_arg.
+   */
   x = x_arg;
   y = y_arg;
 } // }}}
@@ -70,6 +108,9 @@ const Vec operator-(Vec lhs, const Vec& rhs) {
   return lhs;
 }
 const double operator*(const Vec& lhs, const Vec& rhs) {
+  /*
+   * Computes the inner product of lhs and rhs.
+   */
   return lhs.get_x()*rhs.get_x()+lhs.get_y()+rhs.get_y();
 }
 const int operator==(const Vec& lhs, const Vec& rhs) {

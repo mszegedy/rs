@@ -13,11 +13,14 @@
 
 int main(int argc, char** argv) {
   SDL_Surface* screen = NULL;
-  SDL_Surface* hello = NULL; // will contain image with message "Hello, world!"
+  SDL_Surface* hello = NULL; // will contain image with message "Hello world"
   if(SDL_Init(SDL_INIT_EVERYTHING) == -1)
     return 1;
   SDL_WM_SetCaption(::kTitle.c_str(),NULL);
-  screen = SDL_SetVideoMode(::kScreenWidth,::kScreenHeight,::kScreenBPP,SDL_HWSURFACE);
+  screen = SDL_SetVideoMode(::kScreenWidth,
+                            ::kScreenHeight,
+                            ::kScreenBPP,
+                            SDL_HWSURFACE);
   if(screen == NULL)
     return 1;
   hello = gfx::LoadImage("graphics/hello.png");

@@ -15,21 +15,23 @@ class GameObject {
    * counts.
    */
   public:
-    Vec get_pos() const;            // Get position Vec
-    Vec get_dim() const;            // Get dimension Vec
-    double get_time() const;        // Get time
-    SDL_Surface* get_image() const; // Get image (usually dependent on time)
-    void set_pos(const Vec& new_val);         // Set position Vec
-    void set_pos_x(const double new_val);     // Set position Vec's x
-    void set_pos_y(const double new_val);     // Set position Vec's y
-    void set_dim(const Vec& new_val);         // Set dimension Vec
-    void set_dim_x(const double new_val);     // Set dimension Vec's x
-    void set_dim_y(const double new_val);     // Set dimension Vec's y
-    void add_to_time(const double increment); // Set time
-    Vec get_upper_right_corner() const; // Position Vec + dimension Vec
+   Vec get_pos() const;
+   Vec get_dim() const;
+   double get_time() const;
+   SDL_Surface* get_image() const;
+   void set_pos(const Vec& new_val);
+   void set_pos_x(const double new_val);
+   void set_pos_y(const double new_val);
+   void set_dim(const Vec& new_val);
+   void set_dim_x(const double new_val);
+   void set_dim_y(const double new_val);
+   void add_to_time(const double increment);
+   Vec get_upper_right_corner() const; // pos + dim + Vec(1.,1.)
+   GameObject(const double x, const double y); // pos = Vec(x,y)
   private:
-    Vec pos;     // Bottom left corner
-    Vec dim;     // Vec(width,height)
-    double time; // Time of object since creation; classically 1 tick/frame
+   Vec pos; // Bottom left corner
+   Vec dim;
+   double time; // Time of object since creation; classically 1 tick/frame
+   SDL_Surface* spritesheet; // get_image() reads from here
 };
 #endif

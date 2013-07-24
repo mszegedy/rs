@@ -75,12 +75,13 @@ void Vec::set_t(const double new_val) {
   x = ::kInvSqrtTwo*r*cos(new_val);
   y = ::kInvSqrtTwo*r*sin(new_val);
 }
-Vec::Vec(const double x_arg, const double y_arg) {
+Vec::Vec(const double x, const double y) : x(x), y(y){}
+Vec::Vec(const Vec& copy_from) {
   /*
-   * Construct this vector with x being x_arg and y being y_arg.
+   * Copy the contents of copy_from to this Vec.
    */
-  x = x_arg;
-  y = y_arg;
+  x = copy_from.get_x();
+  y = copy_from.get_y();
 } // }}}
 // Operator overloads {{{
 Vec& operator+=(Vec& lhs, const Vec& rhs) {

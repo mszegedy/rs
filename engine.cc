@@ -9,7 +9,7 @@
 // Classes
 #include "math/Vec.h"
 // Functions
-#include "graphics/gfx.h"
+#include "gfx.h"
 
 int main(int argc, char** argv) {
   SDL_Surface* screen = NULL;
@@ -17,13 +17,11 @@ int main(int argc, char** argv) {
   if(SDL_Init(SDL_INIT_EVERYTHING) == -1)
     return 1;
   SDL_WM_SetCaption(::kTitle.c_str(),NULL);
-  screen = SDL_SetVideoMode(::kScreenWidth,
-                            ::kScreenHeight,
-                            ::kScreenBPP,
+  screen = SDL_SetVideoMode(::kScreenWidth, ::kScreenHeight, ::kScreenBPP,
                             SDL_HWSURFACE);
   if(screen == NULL)
     return 1;
-  hello = gfx::LoadImage("graphics/hello.png");
+  hello = gfx::LoadImage("world/hello.png");
   gfx::ApplySurface(Vec(10.,10.),hello,screen);
   if(SDL_Flip(screen) == -1)
     return 1;

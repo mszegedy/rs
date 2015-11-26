@@ -82,7 +82,8 @@ Vec::Vec(const Vec& copy_from) {
    */
   x = copy_from.get_x();
   y = copy_from.get_y();
-} // }}}
+}
+// }}}
 // Operator overloads {{{
 Vec& operator+=(Vec& lhs, const Vec& rhs) {
   lhs.set_x(lhs.get_x()+rhs.get_x());
@@ -120,3 +121,4 @@ const int operator==(const Vec& lhs, const Vec& rhs) {
 const int operator!=(const Vec& lhs, const Vec& rhs) {
   return ((lhs.get_x() != rhs.get_x()) || (lhs.get_y() != rhs.get_y()));
 }
+// }}}
